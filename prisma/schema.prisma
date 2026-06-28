@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model MediaFile {
+  id           String   @id @default(uuid())
+  uploadedBy   String
+  entityType   String
+  entityId     String
+  fileType     String
+  originalName String
+  mimeType     String
+  sizeBytes    BigInt
+  bucket       String
+  objectKey    String   @unique
+  publicUrl    String?
+  isEncrypted  Boolean  @default(false)
+  createdAt    DateTime @default(now())
+}
